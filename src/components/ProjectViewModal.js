@@ -43,12 +43,7 @@ const {activateOffer}=useContext(ProjectsContext)
         <ListGroup.Item>
             <strong>offers:</strong>
             <ListGroup>
-              {project.offers.map(offer => (
-                <ListGroup.Item>{offer.commpanyName.name} 
-                {offer.activated ? null: <Button  onClick={() => activateOffer(true)}> Activate</Button>
-                }
-                </ListGroup.Item>
-              ))}
+              
             </ListGroup>
           </ListGroup.Item>
       </Modal.Body>

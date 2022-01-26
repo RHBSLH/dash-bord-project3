@@ -81,6 +81,8 @@ function App() {
     try {
       const form = e.target
 
+      
+
       const projectBody = {
         title: form.elements.title.value,
         description: form.elements.description.value,
@@ -90,9 +92,10 @@ function App() {
         demoLink: form.elements.demoLink.value,
         gitHubLink: form.elements.gitHubLink.value,
         field: form.elements.field.value,
+        
         // type: form.elements.type.value,
       }
-      await axios.put(`http://localhost:5000/api/projects/${projectId}`, projectBody, {
+      await axios.put(`http://localhost:5000/api/projects/admain/${projectId}`, projectBody, {
         headers: {
           Authorization: localStorage.tokenDashboardProjects,
         },
@@ -119,7 +122,6 @@ function App() {
         demoLink: form.elements.demoLink.value,
         gitHubLink: form.elements.gitHubLink.value,
         field: form.elements.field.value,
-       
       }
       await axios.post(`http://localhost:5000/api/projects/add-project-admain`, projectBody, {
         headers: {
@@ -145,7 +147,7 @@ function App() {
 
       const adminBody = {
         fullName: form.elements.fullName.value,
-         email: form.elements.email.value,
+        email: form.elements.email.value,
         password: form.elements.password.value,
         avatar: form.elements.avatar.value,
       }
@@ -192,21 +194,40 @@ function App() {
     }
   }
 
-  
-const activateOffer  = async offerId => {
-  try {
-    await axios.delete(`http://localhost:5000/api/companies/${offerId}/activate`, {
-      headers: {
-        Authorization: localStorage.tokenDashboardProjects,
-      },
-    })
-    toast.success("offer activate")
-     getProjects()
-  } catch (error) {
-    if (error.response) toast.error(error.response.data)
-    else console.log(error)
+  const activateOffer = async offerId => {
+    try {
+      await axios.delete(`http://localhost:5000/api/companies/${offerId}/activate`, {
+        headers: {
+          Authorization: localStorage.tokenDashboardProjects,
+        },
+      })
+      toast.success("offer activate")
+      getProjects()
+    } catch (error) {
+      if (error.response) toast.error(error.response.data)
+      else console.log(error)
+    }
   }
-}
+  //add sub
+  const addSubscription = async (e,companyId )=> {
+    e.preventDefault()
+    try {
+      const form = e.target
+      const subBody = {
+        date: form.elements.date.value,
+      }
+      await axios.post(`http://localhost:5000/api/companies/${companyId}/sub`, subBody, {
+        headers: {
+          Authorization: localStorage.tokenDashboardProjects,
+        },
+      })
+      getCopmanies()
+    } catch (error) {
+      if (error.response) toast.error(error.response.data)
+      else console.log(error)
+    }
+  }
+
   const store = {
     projects,
     users,
@@ -220,6 +241,7 @@ const activateOffer  = async offerId => {
     deleteUser,
     deletCompany,
     activateOffer,
+    addSubscription,
   }
 
   return (

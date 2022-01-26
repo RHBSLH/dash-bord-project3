@@ -6,7 +6,7 @@ function ProjectEditModal(props) {
   const { show, setShow, project } = props
   const { editProject } = useContext(ProjectContext)
   const allFields = ["Industry", "Commercial", "Education", "Healthy", "Entertainment", "culture"]
-  const types = ["General", "User", "Company"]
+ 
 
   return (
     <Modal show={show} onHide={() => setShow(false)}>
@@ -71,23 +71,7 @@ function ProjectEditModal(props) {
               <Form.Control type="url" name="gitHubLink" defaultValue={project.gitHubLink}  />
             </Col>
           </Form.Group>
-          {/* <Form.Group as={Row} className="mb-3">
-            <Form.Label column md="3">
-              type
-            </Form.Label>
-            <Col md="8">
-              {types.map(type => (
-                <Row key={type._id}>
-                  <Col md="2">
-                    <Form.Check type="checkbox" name="type" value={type} /> {type}
-                  </Col>
-                  <Col md="2">
-                    <span>{types.value}</span>
-                  </Col>
-                </Row>
-              ))}
-            </Col>
-          </Form.Group> */}
+        
           <Form.Group as={Row} className="mb-3">
             <Form.Label column md="3">
               field
@@ -96,10 +80,10 @@ function ProjectEditModal(props) {
               {allFields.map(field => (
                 <Row key={field._id}>
                   <Col md="2">
-                    <Form.Check type="checkbox" name="field" value={field} /> {field}
+                    <Form.Check type="radio" name="field" value={field} label={field} /> 
                   </Col>
                   <Col md="2">
-                    <span>{allFields.value}</span>
+                   
                   </Col>
                 </Row>
               ))}

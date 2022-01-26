@@ -1,7 +1,10 @@
-import { Button, Image, ListGroup, Modal } from "react-bootstrap"
+import { useContext, useState } from "react"
+import { Button, Col, Form, Image, ListGroup, Modal, Row } from "react-bootstrap"
+import ProjectsContext from "../utils/ProjectContext"
 
 function CompanyViewModal(props) {
   const { show, setShow, company } = props
+  const { addSubscription } = useContext(ProjectsContext)
   return (
     <Modal show={show} onHide={() => setShow(false)}>
       <Modal.Header closeButton>
@@ -10,7 +13,7 @@ function CompanyViewModal(props) {
       <Modal.Body>
         <ListGroup>
           <ListGroup.Item>
-            <strong>name:</strong> {company.fullName} 
+            <strong>name:</strong> {company.name}
           </ListGroup.Item>
           <ListGroup.Item>
             <strong>aboutUs:</strong> {company.aboutUs}
@@ -32,6 +35,18 @@ function CompanyViewModal(props) {
           </ListGroup.Item>
           <ListGroup.Item>
             <strong>subscription:</strong> {company.subscription}
+            <br />
+            <Form onSubmit={(e) => addSubscription(e,company._id)}>
+              <Form.Group as={Row} className="mb-3">
+                <Form.Label column md="3" >
+                  date
+                </Form.Label>
+                <Col md="8">
+                  <Form.Control type="date" name="date" defaultValue={company.subscription} />
+                </Col>
+              </Form.Group>
+              <Button type="submit" > Subscription</Button>
+            </Form>
           </ListGroup.Item>
         </ListGroup>
       </Modal.Body>

@@ -7,7 +7,7 @@ function ProjectAddModal(props) {
   const { show, setShow } = props
   const { addProject } = useContext(ProjectsContext)
   const allFields = ["Industry", "Commercial", "Education", "Healthy", "Entertainment", "culture"]
-  const types = ["General","User","Company"]
+  
  
   return (
     <Modal show={show} onHide={() => setShow(false)}>
@@ -45,7 +45,7 @@ function ProjectAddModal(props) {
               video
             </Form.Label>
             <Col md="8">
-              <Form.Control type="url" name="video" required />
+              <Form.Control type="url" name="video"  />
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3">
@@ -72,27 +72,7 @@ function ProjectAddModal(props) {
               <Form.Control type="url" name="gitHubLink" required />
             </Col>
           </Form.Group>
-          {/* <Form.Group as={Row} className="mb-3">
-            <Form.Label column md="3">
-              type
-            </Form.Label>
-            <Col md="8">
-              {types.map(type => (
-                <Row>
-                  <Col md="2">
-                    <Form.Check
-                      type="checkbox"
-                      name="type"
-                      value={type}
-                    /> {type}
-                  </Col>
-                  <Col md="2">
-                    <span>{types.value}</span>
-                  </Col>
-                </Row>
-              ))}
-            </Col>
-          </Form.Group> */}
+        
           <Form.Group as={Row} className="mb-3">
             <Form.Label column md="3">
               field
@@ -102,7 +82,7 @@ function ProjectAddModal(props) {
                 <Row>
                   <Col md="2">
                     <Form.Check
-                      type="checkbox"
+                      type="radio"
                       name="field"
                       value={field}
                     /> {field}

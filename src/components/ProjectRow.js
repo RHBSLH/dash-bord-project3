@@ -16,12 +16,12 @@ function ProjectRow(props) {
     <tr style={{ verticalAlign: "middle", tableLayout: "fixed", wordWrap: "break-word" }}>
       <td style={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}>{project._id}</td>
       <td>{project.title}</td>
-      <td style={{ verticalAlign: "middle", tableLayout: "fixed", wordWrap: "break-word" }}>{project.description}</td>
+      <td style={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }}>{project.description}</td>
       <td>
         <img src={project.image} style={{ objectFit: "contain", height: "100px", width: "100%" }} />
       </td>
-      <td>
-       <video src= {project.video} style={{ objectFit: "contain", height: "100px", width: "100%" }}/>
+      <td  style={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden" }} >
+      {project.video}
       </td>
       <td>{project.date}</td>
       <td>{project.demoLink}</td>
